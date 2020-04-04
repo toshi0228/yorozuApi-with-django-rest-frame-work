@@ -43,7 +43,22 @@ INSTALLED_APPS = [
     # 'corsheaders'
 ]
 
+# ============================================================
+# INSTALLED_APPS
+# djangoフレームワークを使う上で必要なINSTALLED_APPS
+# rest_framework
 # djoser tokenのためのurlを作成
+# ============================================================
+
+
+# ============================================================
+# AUTH_USER_MODEL
+# カスタマイズユーザーの設定を反映させるために必要
+# なければ、django.adminの時のログインページがusernameのまま
+# createsuperuserの設定は変わる。
+# ============================================================
+
+AUTH_USER_MODEL = 'yorozu.MyUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
