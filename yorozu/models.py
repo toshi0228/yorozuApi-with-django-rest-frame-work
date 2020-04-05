@@ -44,6 +44,11 @@ class MyUserManager(BaseUserManager):
 # AbstractBaseUserを利用してカスタマイズユーザーを作成する場合、
 # BaseUserManagerを継承したカスタムマネージャーを実装する必要があります
 class MyUser(AbstractBaseUser):
+
+    class Meta:
+        # 管理画面でアプリのタイトルの名前を変更
+        verbose_name_plural = "アカウント"
+
     username = models.CharField(
         "ユーザー名", max_length=30, unique=False, default=True)
     first_name = models.CharField('first name', max_length=30, blank=True)
@@ -88,6 +93,11 @@ class MyUser(AbstractBaseUser):
 
 class Tag(models.Model):
     """タグ"""
+
+    class Meta:
+        # 管理画面でアプリのタイトルの名前を変更
+        verbose_name_plural = "タグ"
+
     name = models.CharField("名称", max_length=64, unique=True)
 
     def __str__(self):
@@ -95,8 +105,8 @@ class Tag(models.Model):
 
 
 class Plan(models.Model):
-
     class Meta:
+        # 管理画面でアプリのタイトルの名前を変更
         verbose_name_plural = "プラン"
 
     title = models.CharField("プランタイトル", max_length=255)
@@ -109,4 +119,5 @@ class Plan(models.Model):
     # tags = TaggableManager("タグ", blank=True)
 
     def __str__(self):
+        # タイトルの名前を押して詳細に入ったときの名前を変更できる
         return self.title

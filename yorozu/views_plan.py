@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .models import Plan
-from .serializer import PlanSerializer
+from .serializer_plan import PlanSerializer
 
 
 class PlanViewSet(viewsets.ModelViewSet):

@@ -39,15 +39,30 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'djoser',
-    'yorozu'
-    # 'corsheaders'
+    'yorozu',
+    'corsheaders'
 ]
+
 
 # ============================================================
 # INSTALLED_APPS
 # djangoフレームワークを使う上で必要なINSTALLED_APPS
 # rest_framework
-# djoser tokenのためのurlを作成
+# djoser tokenのためのurlを作成 (エンドポイントを作成)
+# ============================================================
+
+# ============================================================
+# フロントエンドのwebサーバーから、APIアクセルを許可する方法
+# todo
+# (1)INSTALLED_APPSに'corsheaders'を追加
+# (2)MIDDLEWAREに'corsheaders.middleware.CorsMiddleware'を追加
+# (3)許可するオリジンを追加 以下の文言をsettingsファイルに追加
+
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+# ]
+
+# pip install django-core-headers
 # ============================================================
 
 
@@ -60,7 +75,36 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'yorozu.MyUser'
 
+# ============================================================
+# jwtを使う場合の設定
+# jwt認証の場合、サードパーティ製のDjangoパーケージを使う。
+# (1) pip install djangorestframework-simplejwt
+# (2) pip install djoser エンドポイントの作成
+# ex)urls.pyに追加
+# path('api/auth/', include('djoser.urls.jwt')),
+# (3)djangorestframework-simplejwtをdjangoに読み込ませる
+
+# ex)
+# http://127.0.0.1:8081/api/auth/jwt/createに
+# メールアドレスとpasswordを送るとトークンが帰ってくる
+# ============================================================
+
+# ============================================================
+# REST_FRAMEWORK
+# djangoが標準でサポートしている認証形式を変更する
+# DEFAULT_AUTHENTICATION_CLASSES'に# Simple JWTの読み込ませる
+# djangoの認証に関して、オーバーライドさせるrイメージだろうか,,,
+# ============================================================
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # Simple JWTの読み込み
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,6 +113,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# 許可するオリジン
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
+
 
 ROOT_URLCONF = 'config.urls'
 

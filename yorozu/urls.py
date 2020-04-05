@@ -1,5 +1,5 @@
 from django.urls import path, include
-from yorozu import views_account
+from yorozu import views_account, views_plan
 from rest_framework import routers
 
 
@@ -12,8 +12,9 @@ from rest_framework import routers
 # ======================================================================
 
 router = routers.DefaultRouter()
-router.register('register', views_account.AccountViewSet)
+router.register('plan', views_plan.PlanViewSet)
+router.register('account/register', views_account.AccountViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]
