@@ -84,3 +84,29 @@ class MyUser(AbstractBaseUser):
     #     "Is the user a member of staff?"
     #     # Simplest possible answer: All admins are staff
     #     return self.is_admin
+
+
+class Tag(models.Model):
+    """タグ"""
+    name = models.CharField("名称", max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Plan(models.Model):
+
+    class Meta:
+        verbose_name_plural = "プラン"
+
+    title = models.CharField("プランタイトル", max_length=255)
+    description = models.CharField("プランの説明", max_length=255)
+    image = models.ImageField("イメージ画像", upload_to='', default="")
+    price = models.PositiveIntegerField("料金", default=0)
+    tags = models.ManyToManyField(Tag)
+
+    # tags = models.ManyToManyField(Tag)
+    # tags = TaggableManager("タグ", blank=True)
+
+    def __str__(self):
+        return self.title

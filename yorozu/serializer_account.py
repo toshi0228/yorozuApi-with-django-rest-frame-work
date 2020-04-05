@@ -1,3 +1,4 @@
+from .models import Plan
 from rest_framework import serializers
 from .models import MyUser
 

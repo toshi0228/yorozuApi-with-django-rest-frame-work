@@ -1,5 +1,5 @@
 
-from .serializer import MyUserSerializer
+from .serializer_account import MyUserSerializer
 from .models import MyUser
 from rest_framework import viewsets
 from rest_framework import status, views
