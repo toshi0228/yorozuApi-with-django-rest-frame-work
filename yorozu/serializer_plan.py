@@ -10,6 +10,7 @@ class PlanSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         print(validated_data)
         tag = Plan.objects.get_or_create(**validated_data)
+        print(f'{"="*25}')
         # if not created:
         #     raise exceptions.ValidationError(
         #         validated_data['name']+" already exists.")
