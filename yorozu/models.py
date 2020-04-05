@@ -100,6 +100,53 @@ class Tag(models.Model):
 
     name = models.CharField("名称", max_length=64, unique=True)
 
+    @classmethod
+    def get_or_create(cls, tag):
+        """指定された名称のタグを生成して返す、既にあればそれを取得して返す"""
+        ret = cls.objects.filter(name=tag).first()
+        if not ret:
+            # オブジェクトの作成と保存を一つの処理で行う
+            ret = cls.objects.create(name=tag)
+        return ret
+
+    # ============================================================
+    # objects.create(name=name)
+    # オブジェクトの作成と保存を一つの処理で行う
+
+    # (1)と(2)は同じ
+    # (1) p = Person.objects.create(first_name="Bruce", last_name="Springsteen")
+    # (2) p = Person(first_name="Bruce", last_name="Springsteen")
+    #     p.save(force_insert=True)
+  # ============================================================
+
+    # PlanSerializerで使うクラスメソッド
+    @classmethod
+    def multi_get_or_create(cls, validated_data):
+        tags = []
+        validated_tags = validated_data.get("tags")
+        if not validated_tags:
+            return []
+        for tag in validated_tags:
+            tags.append(Tag.get_or_create(tag))
+        return tags
+
+
+#   @classmethod
+#   def multi_get_or_create(cls, validated_data):
+#         validated_tags = validated_data.get("tags")
+    # tags = []
+    # for tag in validated_tags:
+    #     tags.append(Tag.get_or_create(tag))
+
+    # @classmethod
+    # def multi_get_or_create(cls, names):
+    #     if not names:
+    #         return []
+    #     tags = []
+    #     for name in names:
+    #         tags.append(Tag.get_or_create(name))
+    #     return tags
+
     def __str__(self):
         return self.name
 

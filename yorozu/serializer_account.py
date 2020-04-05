@@ -13,6 +13,7 @@ class MyUserSerializer(serializers.ModelSerializer):
 
     # 上書きでユーザーを作成する
     # シリアライザーでcreateを使うことでオーバーライドできる
+    # 引数には、入力項目が入ってくる
     def create(self, validated_data):
         user = MyUser.objects.create_user(
             email=validated_data['email'],
