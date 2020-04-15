@@ -1,6 +1,6 @@
-from .models import Plan
 from rest_framework import serializers
-from .models import MyUser
+from ..models import Plan
+from ..models import MyUser
 
 
 class MyUserSerializer(serializers.ModelSerializer):
