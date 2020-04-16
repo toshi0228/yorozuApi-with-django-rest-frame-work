@@ -103,6 +103,7 @@ class Tag(models.Model):
     @classmethod
     def get_or_create(cls, tag):
         """指定された名称のタグを生成して返す、既にあればそれを取得して返す"""
+        # データがなかった場合Noneを返す
         ret = cls.objects.filter(name=tag).first()
         if not ret:
             # オブジェクトの作成と保存を一つの処理で行う
@@ -120,32 +121,28 @@ class Tag(models.Model):
   # ============================================================
 
     # PlanSerializerで使うクラスメソッド
+    # validated_data -> [OrderedDict([('name', '企画')]), OrderedDict([('name', 'インスタ')])]
+    # {"name": "記念日fewa"},{"name": "記念日a"}
     @classmethod
-    def multi_get_or_create(cls, validated_data):
+    def multi_get_or_create(cls, validated_data_obj):
+
+        # ex) validated_data_obj:{'tags': [OrderedDict([('name', '記念日')]), OrderedDict([('name', '企画')])]}
+        validated_datas = validated_data_obj.get("tags")
+
+        # ['企画', 'インスタ']
+        no_ordered_dict_tags = []
+
+        # ex) validated_datas:[OrderedDict([('name', '記念日')]), OrderedDict([('name', '企画')])]
+        for validated_data in validated_datas:
+            for val in validated_data.values():
+                no_ordered_dict_tags.append(val)
+
         tags = []
-        validated_tags = validated_data.get("tags")
-        if not validated_tags:
+        if not no_ordered_dict_tags:
             return []
-        for tag in validated_tags:
+        for tag in no_ordered_dict_tags:
             tags.append(Tag.get_or_create(tag))
         return tags
-
-
-#   @classmethod
-#   def multi_get_or_create(cls, validated_data):
-#         validated_tags = validated_data.get("tags")
-    # tags = []
-    # for tag in validated_tags:
-    #     tags.append(Tag.get_or_create(tag))
-
-    # @classmethod
-    # def multi_get_or_create(cls, names):
-    #     if not names:
-    #         return []
-    #     tags = []
-    #     for name in names:
-    #         tags.append(Tag.get_or_create(name))
-    #     return tags
 
     def __str__(self):
         return self.name
