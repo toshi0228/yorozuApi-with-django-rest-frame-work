@@ -141,6 +141,7 @@ class Tag(models.Model):
         if not no_ordered_dict_tags:
             return []
         for tag in no_ordered_dict_tags:
+            # 入力されたタグからタグを作成する
             tags.append(Tag.get_or_create(tag))
         return tags
 
