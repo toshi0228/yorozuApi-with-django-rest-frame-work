@@ -19,6 +19,7 @@ def api_entry(request):
     print("ここまで届いた")
     print(request.body)
     print(len(request.body))
+    print(type(request.body.title))
     # print(request.FILES["image"])
     print(f'{"="*125}')
 

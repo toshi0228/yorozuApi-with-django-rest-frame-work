@@ -1,5 +1,5 @@
 from django.urls import path, include
-from yorozu.views import views_account, views_plan, views_tag, views_plan_entry
+from yorozu.views import views_account, views_plan, views_tag, views_plan_entry, api_view_plan
 from rest_framework import routers
 
 
@@ -18,5 +18,7 @@ router.register('tag', views_tag.TagViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('entry', views_plan_entry.api_entry)
+    path('entry', api_view_plan.PlanView.as_view())
 ]
+
+# path('entry', views_plan_entry.api_entry),

@@ -98,7 +98,7 @@ class Tag(models.Model):
         # 管理画面でアプリのタイトルの名前を変更
         verbose_name_plural = "タグ"
 
-    name = models.CharField("名称", max_length=64, unique=True)
+    name = models.CharField("名称", max_length=64, unique=True, blank=True)
 
     @classmethod
     def get_or_create(cls, tag):
@@ -120,27 +120,22 @@ class Tag(models.Model):
     #     p.save(force_insert=True)
   # ============================================================
 
-    # PlanSerializerで使うクラスメソッド
-    # validated_data -> [OrderedDict([('name', '企画')]), OrderedDict([('name', 'インスタ')])]
-    # {"name": "記念日fewa"},{"name": "記念日a"}
     @classmethod
-    def multi_get_or_create(cls, validated_data_obj):
+    def multi_get_or_create(cls, validated_data):
 
-        # ex) validated_data_obj:{'tags': [OrderedDict([('name', '記念日')]), OrderedDict([('name', '企画')])]}
-        validated_datas = validated_data_obj.get("tags")
+        # ex)validated_data: {'title': '企画屋',..... 'price': 122, 'tags': '記念日,インスターグラマー'}
+        validated_data_tags = validated_data.get("tag")
+
+        # 記念日,インスターグラマー => ['インスターグラマー', '記念日']
+        tag_list = validated_data_tags.split(",")
 
         # ['企画', 'インスタ']
         no_ordered_dict_tags = []
 
-        # ex) validated_datas:[OrderedDict([('name', '記念日')]), OrderedDict([('name', '企画')])]
-        for validated_data in validated_datas:
-            for val in validated_data.values():
-                no_ordered_dict_tags.append(val)
-
         tags = []
-        if not no_ordered_dict_tags:
+        if not tag_list:
             return []
-        for tag in no_ordered_dict_tags:
+        for tag in tag_list:
             # 入力されたタグからタグを作成する
             tags.append(Tag.get_or_create(tag))
         return tags
@@ -158,7 +153,7 @@ class Plan(models.Model):
     description = models.CharField("プランの説明", max_length=255)
     image = models.ImageField("イメージ画像", upload_to='', default="")
     price = models.PositiveIntegerField("料金", default=0)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     # tags = models.ManyToManyField(Tag)
     # tags = TaggableManager("タグ", blank=True)
