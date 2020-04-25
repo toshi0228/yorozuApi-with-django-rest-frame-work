@@ -16,6 +16,7 @@ class PlanPostSerializer(serializers.Serializer):
     image = serializers.ImageField(default="")
     price = serializers.IntegerField(default=0)
     tag = serializers.CharField(max_length=255)
+    profile_description = serializers.CharField(max_length=255)
 
     def create(self, validated_data):
 

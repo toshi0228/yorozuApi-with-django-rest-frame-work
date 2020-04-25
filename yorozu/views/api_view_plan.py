@@ -12,6 +12,15 @@ class PlanView(views.APIView):
         return Response({"message": "planリストはviews_planでリクエスト処理をする"})
 
     def post(self, request):
+        # print(request.body.get("profileDescription"))
+        # print(f'{"="*25}')
+        # print(request.body)
+        # print(f'{"="*25}')
+        print(request.data)
+        # -------------------------------------------------------------------------------
+        # request.bodyは、axiosで送られてきた、データがバイト型になっている。
+        # request.dataは、axiosで送られてきた、データが辞書型になっている。
+        # -------------------------------------------------------------------------------
         serializer = self.serializer_class(data=request.data)
 
         # -------------------------------------------------------------------------------

@@ -154,6 +154,7 @@ class Plan(models.Model):
     image = models.ImageField("イメージ画像", upload_to='', default="")
     price = models.PositiveIntegerField("料金", default=0)
     tags = models.ManyToManyField(Tag, blank=True)
+    # profile_description = models.TextField("プロフィール説明", max_length=255)
 
     # tags = models.ManyToManyField(Tag)
     # tags = TaggableManager("タグ", blank=True)
@@ -169,3 +170,13 @@ class Plan(models.Model):
 # 上記の例だとMEDIA_ROOT/images/に保存される
 
 # =====================================================================================
+
+
+class Profile(models.Model):
+    class Meta:
+        # 管理画面でアプリのタイトルの名前を変更
+        verbose_name_plural = "プロフィール"
+
+    nickname = models.CharField("ニックネーム", max_length=10)
+    profile_description = models.TextField("プロフィール説明", max_length=255)
+    review_score = models.IntegerField("レビュースコア")
