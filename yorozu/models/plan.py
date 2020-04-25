@@ -1,15 +1,6 @@
 from django.db import models
 
 
-# =====================================================================================
-
-# ImageField.upload_toはアップロード先のパスで、
-# settings.pyで設定したMEDIA_ROOT以下のパスを指定します。
-# 上記の例だとMEDIA_ROOT/images/に保存される
-
-# =====================================================================================
-
-
 class Tag(models.Model):
     """タグ"""
 
@@ -69,11 +60,25 @@ class Plan(models.Model):
         verbose_name_plural = "プラン"
 
     title = models.CharField("プランタイトル", max_length=255)
-    description = models.CharField("プランの説明", max_length=255)
+    description = models.TextField("プランの説明", max_length=255)
     image = models.ImageField("イメージ画像", upload_to='', default="")
     price = models.PositiveIntegerField("料金", default=0)
     tags = models.ManyToManyField(Tag, blank=True)
 
+    # =====================================================================================
+    # 参照先を外部のモデルに持つ時、ForeignKeyは循環参照が起きないように、第一引数を文字列にできる
+    # =====================================================================================
+    yorozuya_profile = models.ForeignKey(
+        "Profile",  null=True,  on_delete=models.CASCADE, default="")
+
     def __str__(self):
         # タイトルの名前を押して詳細に入ったときの名前を変更できる
         return self.title
+
+# =====================================================================================
+
+# ImageField.upload_toはアップロード先のパスで、
+# settings.pyで設定したMEDIA_ROOT以下のパスを指定します。
+# 上記の例だとMEDIA_ROOT/images/に保存される
+
+# =====================================================================================
