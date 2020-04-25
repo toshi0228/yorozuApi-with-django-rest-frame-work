@@ -71,6 +71,7 @@ INSTALLED_APPS = [
 # カスタマイズユーザーの設定を反映させるために必要
 # なければ、django.adminの時のログインページがusernameのまま
 # createsuperuserの設定は変わる。
+# アプリケーション名.モデル名
 # ============================================================
 
 AUTH_USER_MODEL = 'yorozu.MyUser'
