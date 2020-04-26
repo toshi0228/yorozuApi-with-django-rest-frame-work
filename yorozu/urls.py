@@ -1,5 +1,5 @@
 from django.urls import path, include
-from yorozu.views import views_account, views_plan, views_tag, views_plan_entry, api_view_plan
+from yorozu.views import views_account, views_plan, views_tag, views_plan_entry, api_view_plan, views_profile
 from rest_framework import routers
 
 
@@ -13,6 +13,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('account/register', views_account.AccountViewSet)
+router.register('profile', views_profile.ProfileViewSet)
 router.register('plan', views_plan.PlanViewSet)
 router.register('tag', views_tag.TagViewSet)
 
