@@ -26,6 +26,11 @@ class Profile(models.Model):
 
     # plan_list = models.CharField("プランリスト", max_length=100, default="")
 
+    # tags = models.ManyToManyField(Tag, blank=True)
+
+    plan_list = models.ManyToManyField(
+        "Plan",  null=True,   default="", verbose_name="プランリスト")
+
     def __str__(self):
         # タイトルの名前を押して詳細に入ったときの名前を変更できる
         return self.nickname

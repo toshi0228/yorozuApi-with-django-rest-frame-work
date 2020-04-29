@@ -69,7 +69,7 @@ class Plan(models.Model):
     # 参照先を外部のモデルに持つ時、ForeignKeyは循環参照が起きないように、第一引数を文字列にできる
     # =====================================================================================
     yorozuya_profile = models.ForeignKey(
-        "Profile",  null=True,  on_delete=models.CASCADE, default="")
+        "Profile",  null=True,  on_delete=models.CASCADE, default="", verbose_name="作成者")
 
     def __str__(self):
         # タイトルの名前を押して詳細に入ったときの名前を変更できる
