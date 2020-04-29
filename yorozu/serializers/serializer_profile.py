@@ -1,20 +1,25 @@
 from rest_framework import serializers
 from ..models import Profile
-
-# from rest_framework import serializers
-# from ..models import Tag
+from .serializer_plan import PlanSerializer
+# from .serializer_tag import TagSerializer
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    plan_list = PlanSerializer(many=True)
 
     class Meta:
         model = Profile
-        fields = "__all__"
-
-
-# class TagSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Tag
-#         fields = "__all__"
-#         # fields = ('name')
+        fields = (
+            "id",
+            "nickname",
+            "yorozuya_name",
+            "profile_image",
+            "profile_description",
+            "yorozu_main_image",
+            "review_score",
+            "twitter_account",
+            "instagram_account",
+            "facebook_account",
+            "plan_list"
+        )
+        # fields = "__all__"
