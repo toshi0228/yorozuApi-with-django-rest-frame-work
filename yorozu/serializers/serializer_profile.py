@@ -12,8 +12,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "nickname",
+            "yorozuya_name",
             "profile_image",
             "profile_description",
+            "yorozu_main_image",
             "review_score",
             "twitter_account",
             "instagram_account",

@@ -11,7 +11,9 @@ class Profile(models.Model):
         # app_label = 'yorozu'
 
     nickname = models.CharField("ニックネーム", max_length=10)
+    yorozuya_name = models.CharField("万事屋の名前", max_length=10, default="")
     profile_image = models.ImageField("プロフィール画像", upload_to='', default="")
+    yorozu_main_image = models.ImageField("万屋メイン画像", upload_to='', default="")
     profile_description = models.TextField("プロフィール説明", max_length=255)
     review_score = models.IntegerField("レビュースコア")
 
