@@ -65,11 +65,15 @@ class Plan(models.Model):
     price = models.PositiveIntegerField("料金", default=0)
     tags = models.ManyToManyField(Tag, blank=True)
 
-    # =====================================================================================
     # 参照先を外部のモデルに持つ時、ForeignKeyは循環参照が起きないように、第一引数を文字列にできる
-    # =====================================================================================
     yorozuya_profile = models.ForeignKey(
         "Profile",  null=True,  on_delete=models.CASCADE, default="", verbose_name="作成者")
+
+    # プランのデータをfilterして取得できる
+    # idによってplanデータをリストで取得してくる
+    @classmethod
+    def multi_get_filter_plan(cls, profileInstance):
+        return cls.objects.filter(yorozuya_profile=profileInstance)
 
     def __str__(self):
         # タイトルの名前を押して詳細に入ったときの名前を変更できる

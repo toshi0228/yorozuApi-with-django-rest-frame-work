@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .serializer_tag import TagSerializer
 from ..models import Plan, Tag
-# from collections import OrderedDict
 
 # ===================================================================
 # プラン作成に関して、modelserializerを使いたいが、modelserializerを使うと
@@ -18,6 +17,7 @@ class PlanPostSerializer(serializers.Serializer):
     tag = serializers.CharField(max_length=255)
     profile_description = serializers.CharField(max_length=255)
 
+    # 引数のvalidated_dataは、上記の型を確認したデータが入っている
     def create(self, validated_data):
 
         # タグの保存のクラスメソッド
