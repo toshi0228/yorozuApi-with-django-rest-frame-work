@@ -208,7 +208,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# テンプレートファイルに渡す日付は、自動で日本時間(Asia/Tokyo)に変換される
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 

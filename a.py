@@ -1,4 +1,7 @@
 
+from datetime import datetime
+print(datetime.now())
+
 # def aaa(title):
 #     print(title)
 
@@ -9,6 +12,6 @@
 
 
 # print({**{'title': 'えいえ'}, **{'tle': 'aえ'}})
-a = {'title': 'えいえ'}
+# a = {'title': 'えいえ'}
 
-print(**a)
+# print(**a)

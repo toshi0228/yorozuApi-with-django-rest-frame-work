@@ -8,6 +8,7 @@ from .account import MyUser
 from .profile import Profile
 from .plan import Plan
 from .plan import Tag
+from .message import Message
 
 
 # from .plan import Profile
