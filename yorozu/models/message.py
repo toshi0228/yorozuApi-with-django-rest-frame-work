@@ -12,3 +12,10 @@ class Message(models.Model):
     target_id = models.CharField("送り先のID", max_length=10)
     source_id = models.CharField("送り手のID", max_length=10)
     created_at = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return f'送り主:{self.source_id}'
+
+    # def __str__(self):
+    #     # タイトルの名前を押して詳細に入ったときの名前を変更できる
+    #     return self.nickname

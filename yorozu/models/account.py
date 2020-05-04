@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
@@ -48,7 +49,10 @@ class MyUser(AbstractBaseUser):
     class Meta:
         # 管理画面でアプリのタイトルの名前を変更
         verbose_name_plural = "アカウント"
+    # uuid = models.UUIDField(default="a", editable=False)
 
+    id = models.UUIDField(default=uuid.uuid4,
+                          primary_key=True, editable=False)
     username = models.CharField(
         "ユーザー名", max_length=30, unique=False, default=True)
     first_name = models.CharField('first name', max_length=30, blank=True)
@@ -89,4 +93,3 @@ class MyUser(AbstractBaseUser):
     #     "Is the user a member of staff?"
     #     # Simplest possible answer: All admins are staff
     #     return self.is_admin
-
