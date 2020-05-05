@@ -4,6 +4,8 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
+from .profile import Profile
+
 # マネージャーは、モデルとクエリーの中間にあるもの 変換器と言うところか
 # パスワードをハッシュ化してデータベースに保存する
 # マネージャーは、データベースに保存する前の下ごしらえ
@@ -64,7 +66,7 @@ class MyUser(AbstractBaseUser):
         unique=True,
     )
     password = models.CharField("password", max_length=255, unique=True)
-    profile = models.CharField('profile', max_length=255, blank=True)
+    # profile = models.CharField('profile', max_length=255, blank=True)
     # name = models.CharField(max_length=255)
     # date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
