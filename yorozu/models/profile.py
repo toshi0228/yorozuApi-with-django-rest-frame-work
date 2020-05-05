@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.db import models
 from .plan import Tag
+from .account import MyUser
 
 
 # # よろず屋プロフィール
@@ -10,6 +12,10 @@ class Profile(models.Model):
         verbose_name_plural = "プロフィール"
         # app_label = 'yorozu'
 
+    # account = models.OneToOneField(
+    #     "MyUser", on_delete=models.CASCADE, verbose_name="アカウント情報")
+    id = models.OneToOneField(
+        MyUser, on_delete=models.CASCADE, verbose_name="アカウント情報", null=True, default="")
     nickname = models.CharField("ニックネーム", max_length=10)
     yorozuya_name = models.CharField("万事屋の名前", max_length=10, default="")
     profile_image = models.ImageField("プロフィール画像", upload_to='', default="")
@@ -25,7 +31,3 @@ class Profile(models.Model):
 
     facebook_account = models.CharField(
         "facebookのアカウント", max_length=80, default="", blank=True)
-
-    def __str__(self):
-        # タイトルの名前を押して詳細に入ったときの名前を変更できる
-        return self.nickname

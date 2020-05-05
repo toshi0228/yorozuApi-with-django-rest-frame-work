@@ -4,10 +4,11 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
-
 # マネージャーは、モデルとクエリーの中間にあるもの 変換器と言うところか
 # パスワードをハッシュ化してデータベースに保存する
 # マネージャーは、データベースに保存する前の下ごしらえ
+
+
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
