@@ -14,8 +14,8 @@ class Profile(models.Model):
 
     # account = models.OneToOneField(
     #     "MyUser", on_delete=models.CASCADE, verbose_name="アカウント情報")
-    id = models.OneToOneField(
-        MyUser, on_delete=models.CASCADE, verbose_name="アカウント情報", null=True, default="")
+    id = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                              verbose_name="アカウント情報", null=True, blank=True)
     nickname = models.CharField("ニックネーム", max_length=10)
     yorozuya_name = models.CharField("万事屋の名前", max_length=10, default="")
     profile_image = models.ImageField("プロフィール画像", upload_to='', default="")
