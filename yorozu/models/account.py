@@ -11,7 +11,7 @@ from .profile import Profile
 # マネージャーは、データベースに保存する前の下ごしらえ
 
 
-class MyUserManager(BaseUserManager):
+class AccountManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email, date of
@@ -47,7 +47,7 @@ class MyUserManager(BaseUserManager):
 
 # AbstractBaseUserを利用してカスタマイズユーザーを作成する場合、
 # BaseUserManagerを継承したカスタムマネージャーを実装する必要があります
-class MyUser(AbstractBaseUser):
+class Account(AbstractBaseUser):
 
     class Meta:
         # 管理画面でアプリのタイトルの名前を変更
@@ -57,23 +57,23 @@ class MyUser(AbstractBaseUser):
     id = models.UUIDField(default=uuid.uuid4,
                           primary_key=True, editable=False)
     username = models.CharField(
-        "ユーザー名", max_length=30, unique=False, default=True)
-    first_name = models.CharField('first name', max_length=30, blank=True)
-    last_name = models.CharField('last name', max_length=30, blank=True)
+        "氏名", max_length=30, unique=False, default=True)
+    last_name = models.CharField('苗字(姓)', max_length=30, blank=True)
+    first_name = models.CharField('名前(名)', max_length=30, blank=True)
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name='メールアドレス',
         max_length=255,
         unique=True,
     )
-    password = models.CharField("password", max_length=255, unique=True)
-    # profile = models.CharField('profile', max_length=255, blank=True)
+    password = models.CharField("パスワード", max_length=255, unique=True)
     # name = models.CharField(max_length=255)
     # date_of_birth = models.DateField()
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(verbose_name="ログイン状態", default=True)
+    is_staff = models.BooleanField(
+        verbose_name="adminサイトのログイン権限", default=True)
     # is_admin = models.BooleanField(default=False)
 
-    objects = MyUserManager()
+    objects = AccountManager()
 
     USERNAME_FIELD = 'email'
     # REQUIRED_FIELDS = ['date_of_birth']

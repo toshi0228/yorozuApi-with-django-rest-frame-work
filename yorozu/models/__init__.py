@@ -4,7 +4,7 @@
 # それぞれのモデルがどこにあるか示してあげる
 # ============================================================
 
-from .account import MyUser
+from .account import Account
 from .profile import Profile
 from .plan import Plan
 from .plan import Tag

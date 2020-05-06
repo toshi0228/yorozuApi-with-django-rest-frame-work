@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 class Tag(models.Model):
@@ -68,6 +69,8 @@ class Plan(models.Model):
     # 参照先を外部のモデルに持つ時、ForeignKeyは循環参照が起きないように、第一引数を文字列にできる
     yorozuya_profile = models.ForeignKey(
         "Profile",  null=True,  on_delete=models.CASCADE, default="", verbose_name="作成者")
+
+    created_at = models.DateTimeField("作成日", default=datetime.now)
 
     # プランのデータをfilterして取得できる
     # idによってplanデータをリストで取得してくる
