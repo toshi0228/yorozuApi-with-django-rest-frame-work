@@ -37,6 +37,6 @@ class Profile(models.Model):
     facebook_account = models.CharField(
         "facebookのアカウント", max_length=80, default="", blank=True)
 
-    def __str__(self):
-        # タイトルの名前を押して詳細に入ったときの名前を変更できる
-        return self.id
+    # def __str__(self):
+    #     # タイトルの名前を押して詳細に入ったときの名前を変更できる
+    #     return self.id
