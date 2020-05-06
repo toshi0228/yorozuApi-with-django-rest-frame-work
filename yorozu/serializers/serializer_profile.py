@@ -6,10 +6,11 @@ from ..models import Plan
 
 class ProfileSerializer(serializers.ModelSerializer):
     # plan_list = PlanSerializer(many=True)
-    # SerializerMethodFieldを使うことで、モデルに登録していない
-    # フィールドを自分で作ることができる。
+    # SerializerMethodFieldを使うことで、モデルに登録していないフィールドを自分で作ることができる。
     # SerializerMethodField は get_xxxx ってなっているメソッドをコールする
     plan_list = serializers.SerializerMethodField()
+    # account_id = serializers.ReadOnlyField(source="MyUser.id")
+    # account_id = serializers.ReadOnlyField(source="MyUser")
 
     class Meta:
         model = Profile
@@ -26,7 +27,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             "twitter_account",
             "instagram_account",
             "facebook_account",
-            "plan_list"
+            "plan_list",
+            # "account_id",
         )
 
     # 引数instanceには、Profileモデルの値が入っている
@@ -44,3 +46,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         # ただ、ネストするとimageに関しては、http://127.0.0.1:8000がなくなるので
         # フロント側で自分で書かないといけない
         return serializers.data
+
+    # def get_account_id(self, instance):
+    #     print("~~~~~~~~~~~~~~~~~~~~~~~")
+    #     return "a"
