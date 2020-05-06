@@ -65,7 +65,8 @@ class Account(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    password = models.CharField("パスワード", max_length=255, unique=True)
+    password = models.CharField(
+        verbose_name="パスワード", max_length=255, unique=True)
     # name = models.CharField(max_length=255)
     # date_of_birth = models.DateField()
     is_active = models.BooleanField(verbose_name="ログイン状態", default=True)

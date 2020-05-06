@@ -13,7 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            "account_id",
+            "yorozu_id",
             "nickname",
             "profile_image",
             "profile_description",
@@ -29,7 +29,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         )
 
-    # "account_id"が主キーになっている
+    # "account_id"をfiledsに入れれば、account情報を呼び出せる
 
     # 引数instanceには、Profileモデルの値が入っている
     def get_plan_list(self, instance):
