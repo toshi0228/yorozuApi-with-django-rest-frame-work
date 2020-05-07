@@ -9,7 +9,5 @@ class AccountViewSet(viewsets.ModelViewSet):
     serializer_class = AccountSerializer
     queryset = Account.objects.all()
 
-
-# veiesのフォルダーを分けた方が良い
-# modelsフォルダーの中に入れる
-# pip freeze te
+    # jwtの場合、これは使わなくなる
+    # permission_classes = (IsAuthenticated,)

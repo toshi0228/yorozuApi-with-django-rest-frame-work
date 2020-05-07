@@ -2,7 +2,6 @@ from django.urls import path, include
 from yorozu.views import (views_account,
                           views_plan,
                           views_tag,
-                          views_plan_entry,
                           api_view_plan,
                           views_profile,
                           views_message
@@ -19,7 +18,7 @@ from rest_framework import routers
 # ======================================================================
 
 router = routers.DefaultRouter()
-router.register('account/register', views_account.AccountViewSet)
+router.register('account', views_account.AccountViewSet)
 router.register('profile', views_profile.ProfileViewSet)
 router.register('plan', views_plan.PlanViewSet)
 router.register('tag', views_tag.TagViewSet)
@@ -27,7 +26,7 @@ router.register('message', views_message.MessageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('entry', api_view_plan.PlanView.as_view())
+    # path('accout', views_message.as_view())
 ]
 
 # path('entry', views_plan_entry.api_entry),

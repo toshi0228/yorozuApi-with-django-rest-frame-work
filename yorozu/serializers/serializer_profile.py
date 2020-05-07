@@ -2,6 +2,8 @@ from rest_framework import serializers
 from ..models import Profile
 from .serializer_plan import PlanSerializer
 from ..models import Plan
+from django.contrib.auth import get_user_model
+# from django.conf import settings
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -33,6 +35,16 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     # 引数instanceには、Profileモデルの値が入っている
     def get_plan_list(self, instance):
+        # print(f'{"="*25}')
+        # 以下でprofileのアカウント_idを取得できる
+        # print(instance.account_id)
+
+        # print(get_user_model())
+        # print(settings.AUTH_USER_MODEL)
+        # User = get_user_model()
+        # print(User.objects.get(email="etoshi0228@gmail.com"))
+        # user = User.objects.get(email="etoshi0228@gmail.com")
+        # print(user.profile.yorozu_id)
 
         # プランモデルから、idに適合するモデルを引っ張ってくる
         filter_plan_list = Plan.multi_get_filter_plan(instance)

@@ -1,8 +1,13 @@
 from rest_framework import status, views
 from ..models import Plan
 from rest_framework.response import Response
-# from ..serializers.serializer_plan import PlanSerializer
 from ..serializers.serializer_plan_post import PlanPostSerializer
+
+# ===================================================================
+# プラン作成に関して、タグがリストのため、views.APIViewを使う
+# 画像と配列を一緒に送ると全ての値が文字列になるの、viewssetは使えない
+# プランの一覧を見るときは、views_planを使う
+# ===================================================================
 
 
 class PlanView(views.APIView):
@@ -13,9 +18,7 @@ class PlanView(views.APIView):
 
     def post(self, request):
         # print(request.body.get("profileDescription"))
-        # print(f'{"="*25}')
         # print(request.body)
-        # print(f'{"="*25}')
         print(request.data)
         # -------------------------------------------------------------------------------
         # request.bodyは、axiosで送られてきた、データがバイト型になっている。

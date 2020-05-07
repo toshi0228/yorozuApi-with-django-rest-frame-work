@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -135,6 +136,14 @@ REST_FRAMEWORK = {
     ),
 }
 
+# Simple JWTの設定
+SIMPLE_JWT = {
+    # トークンをJWTに設定
+    'AUTH_HEADER_TYPES': ('JWT',),
+    # トークンの持続時間の設定
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60)
+}
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -206,7 +215,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
+# LANGUAGE_CODE = 'en-us'
 
 # テンプレートファイルに渡す日付は、自動で日本時間(Asia/Tokyo)に変換される
 TIME_ZONE = 'Asia/Tokyo'
