@@ -12,6 +12,7 @@ class Message(models.Model):
     target_id = models.CharField("送り先のID", max_length=10)
     source_id = models.CharField("送り手のID", max_length=10)
     created_at = models.DateTimeField("作成日", default=datetime.now)
+    # 最終的にアップデート_　更新のつき
 
     def __str__(self):
         return f'送り主:{self.source_id}'

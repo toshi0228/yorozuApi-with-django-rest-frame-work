@@ -10,9 +10,9 @@ class PlanViewSet(viewsets.ModelViewSet):
     serializer_class = PlanSerializer
 
 
-def create(self, validated_data):
-    print(f'{"="*125}')
-    serializer_class = PlanSerializer
+# def create(self, validated_data):
+#     print(f'{"="*125}')
+#     serializer_class = PlanSerializer
 
 #     print(f'{"="*125}')
 #     print("PlanViewSet")
