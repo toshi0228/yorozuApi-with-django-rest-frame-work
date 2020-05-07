@@ -27,7 +27,8 @@ router.register('message', views_message.MessageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('entry', api_view_plan.PlanView.as_view())
+    path('entry', api_view_plan.PlanView.as_view()),
+    # path('accout', views_message.as_view())
 ]
 
 # path('entry', views_plan_entry.api_entry),
