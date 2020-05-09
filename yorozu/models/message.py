@@ -21,7 +21,7 @@ class Message(models.Model):
     updated_at = models.DateField("更新日", auto_now=True)
 
     def __str__(self):
-        return f'送り主:{self.source_id}'
+        return f'送り主:{self.sender_yorozu_id}'
 
     # def __str__(self):
     #     # タイトルの名前を押して詳細に入ったときの名前を変更できる
