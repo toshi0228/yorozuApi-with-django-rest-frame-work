@@ -20,3 +20,13 @@ class ProfileViewSet(viewsets.ModelViewSet):
 # import jwt
 # jwt.decode(token, verify=False)
 # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+
+# ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+# 認証に関して
+# 以下の2つのコードを加える
+# permission_classes = (IsAuthenticated,)
+# from rest_framework.permissions import IsAuthenticated
+# reactでheaderにtokenをつけてやると、表示、非表示ができる
+# axios.defaults.headers.common['Authorization'] = `JWT ${auth}`;
+# ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝

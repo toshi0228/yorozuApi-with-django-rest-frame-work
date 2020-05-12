@@ -14,7 +14,7 @@ class Message(models.Model):
     sender_yorozu_id = models.ForeignKey(
         "Profile", verbose_name="送信者", on_delete=models.CASCADE, related_name="sender", default="")
 
-    receiver_yorozy_id = models.ForeignKey(
+    receiver_yorozu_id = models.ForeignKey(
         "Profile", verbose_name="受信者", on_delete=models.CASCADE, related_name="receiver", default="")
 
     created_at = models.DateTimeField("作成日", default=datetime.now)
@@ -23,12 +23,5 @@ class Message(models.Model):
     def __str__(self):
         return f'送り主:{self.sender_yorozu_id}'
 
-    # def __str__(self):
-    #     # タイトルの名前を押して詳細に入ったときの名前を変更できる
-    #     return self.nickname
-
-
-# python manage.py migrate --fake-initial
-
-
-# DELETE FROM table WHERE column = value;
+# dbshellでカラムの追加
+# ALTER TABLE テーブル名 ADD COLUMN カラム名[ データ型];

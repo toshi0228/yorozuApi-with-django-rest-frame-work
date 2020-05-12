@@ -58,10 +58,13 @@ class Account(AbstractBaseUser):
     username = models.CharField("氏名", max_length=30, unique=False, default="")
     last_name = models.CharField('苗字(姓)', max_length=30, blank=True)
     first_name = models.CharField('名前(名)', max_length=30, blank=True)
-    email = models.EmailField(verbose_name='メールアドレス',max_length=255,unique=True)
-    password = models.CharField(verbose_name="パスワード", max_length=255, unique=True)
-    is_active = models.BooleanField(verbose_name="ログイン状態", default=True)
-    is_staff = models.BooleanField(verbose_name="adminサイトのログイン権限", default=True)
+    email = models.EmailField(verbose_name='メールアドレス',
+                              max_length=255, unique=True)
+    password = models.CharField(
+        verbose_name="パスワード", max_length=255, unique=True)
+    is_active = models.BooleanField(verbose_name="ログイン状態", default=False)
+    is_staff = models.BooleanField(
+        verbose_name="adminサイトのログイン権限", default=True)
     # name = models.CharField(max_length=255)
     # date_of_birth = models.DateField()
     # is_admin = models.BooleanField(default=False)

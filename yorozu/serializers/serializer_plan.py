@@ -12,7 +12,7 @@ class PlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
         fields = ("id", 'title', 'description', 'image',
-                  'price', "tags")
+                  'price', "tags",)
         # fields = ("id", 'title', 'description', 'image',
         #           'price', "tags", 'yorozuya_profile')
 

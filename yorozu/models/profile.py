@@ -39,6 +39,7 @@ class Profile(models.Model):
         "facebookのアカウント", max_length=80, default="", blank=True)
 
     created_at = models.DateTimeField("作成日", default=datetime.now)
+    updated_at = models.DateField("更新日", auto_now=True)
 
     def __str__(self):
         # タイトルの名前を押して詳細に入ったときの名前を変更できる
