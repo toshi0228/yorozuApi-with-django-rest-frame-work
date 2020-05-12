@@ -4,7 +4,8 @@ from yorozu.views import (views_account,
                           views_tag,
                           api_view_plan,
                           views_profile,
-                          views_message
+                          views_message,
+                          views_review
                           )
 from rest_framework import routers
 
@@ -23,6 +24,7 @@ router.register('profile', views_profile.ProfileViewSet)
 router.register('plan', views_plan.PlanViewSet)
 router.register('tag', views_tag.TagViewSet)
 router.register('message', views_message.MessageViewSet)
+router.register('review', views_review.MessageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

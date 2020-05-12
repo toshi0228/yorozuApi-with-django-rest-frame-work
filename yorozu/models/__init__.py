@@ -9,6 +9,7 @@ from .profile import Profile
 from .plan import Plan
 from .plan import Tag
 from .message import Message
+from .review import Review
 
 
 # from .plan import Profile
