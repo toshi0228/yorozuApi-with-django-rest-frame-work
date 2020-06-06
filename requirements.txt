@@ -43,7 +43,7 @@ dask==1.2.2
 decorator==4.4.0
 defusedxml==0.6.0
 distributed==1.28.1
-Django==2.2.2
+Django==2.2.13
 django-allauth==0.41.0
 django-cors-headers==3.2.1
 django-filter==2.2.0
